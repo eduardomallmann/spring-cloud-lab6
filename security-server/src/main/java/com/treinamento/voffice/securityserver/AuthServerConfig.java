@@ -25,7 +25,11 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		// TODO define the client details
+		clients.inMemory().withClient("client")
+				.secret("secret")
+				.authorizedGrantTypes("password", "client_credentials", "authorization_code", "implicit")
+				.scopes("oauth2")
+				.autoApprove(true) ;
 	}
 
 	@Override
